@@ -7,6 +7,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var app = express();
 
+var userRouter = require('./src/routes/userRoute');
 var bookRouter = require('./src/routes/bookRoute');
 
 // view engine setup
@@ -23,6 +24,7 @@ app.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }))
 
+app.use('/user', userRouter);
 app.use('/', bookRouter);
 
 // catch 404 and forward to error handler
