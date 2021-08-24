@@ -1,5 +1,6 @@
 <!-- TODO: 로그인 버튼을 누르면 메인 화면으로 이동
-1. 로그인시 아이디와 비밀번호가 DB에 저장되어 있는 것과 동일한지 확인 -->
+1. 로그인시 아이디와 비밀번호가 DB에 저장되어 있는 것과 동일한지 확인
+2, 로그인에 성공한다면 로그인 버튼 클릭 시 메인페이지로 이동 -->
 <!doctype html>
 <html lang="en">
 
@@ -20,10 +21,10 @@
     <div class="container">
         <br>
         <h2>로그인</h2>
-        <form>
+        <form action="/user/signin" method="POST">
             <br>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="ID" required>
+                <input type="text" class="form-control" id="floatingInput" placeholder="ID" required>
                 <label for="floatingInput">로그인</label>
               </div>
               <br>

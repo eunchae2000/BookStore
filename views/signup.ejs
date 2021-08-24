@@ -1,3 +1,6 @@
+<!-- TODO: 
+1. 회원가입 버튼을 누르면 DB에 저장되는 것과 동시에 메인페이지로 이동 -->
+
 <!doctype html>
 <html lang="en">
 
@@ -18,20 +21,20 @@
     <div class="container">
         <br>
         <h2>회원가입</h2>
-        <form>
+        <form action="/user/signup" method="POST">
             <br>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="ID" required>
+                <input type="text" name="user_uid" class="form-control" id="floatingInput" placeholder="ID" required>
                 <label for="floatingInput">아이디</label>
               </div>
               <br>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <input type="password" name="user_password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">비밀번호</label>
             </div>
             <br>
             <div class="mb-3">
-                <label for="exampleInputName1" class="form-label">이름</label>
+                <label for="exampleInputName1" name="user_name" class="form-label">이름</label>
                 <input type="text" class="form-control" id="exampleInputName1" required>
               </div>
             <br>
