@@ -1,59 +1,81 @@
 /* TODO:
 1. 회원가입 시 자동 중복 확인
-2. 로그인 시 아이디, 비밀번호 확인 */
+2. 로그인 시 아이디, 비밀번호 확인 
+3. 로그인에 성공할 시 회원 전용 메인 페이지*/
+var userServices = require('../services/userServices');
 
-var pool = require('../../middleware/bookData')
-var bookService = require('../services/bookService');
-const bcrypt = require("bcrypt");
-
-exports.signUp = async(req, res, next) =>{
+exports.signUp = async(req, res) =>{
     const {user_uid, user_password, user_name} = req.body;
     try{
-        var signup = await bookService.signUp(user_uid, user_password, user_name);
-        var user = await pool.findOne({user_uid});
-        if(user){
-            return res.status(400).json({error: [{msg: "User already exists"}] });
-        }
-        user = pool({
-            user_uid,
-            user_password,
-            user_name,
-        });
-        const salt = await bcrypt.genSalt(10);
-        user.user_password = await bcrypt.hash(user_password, salt);
-
-        await user.save();
-        return res.redirect('/signin')
+        await userServices.signUp(user_uid, user_password, user_name)
+        return res.redirect('/book/main')
     }catch(err){
+        // 중복된 아이디가 있을 경우
+        res.send('<script type="text/javascript">alert("이미 사용중인 아이디 입니다."); document.location.href="/user/signup";</script>')
         return res.status(500).json(err);
     }
 }
 
-exports.signUpCom = async(req, res, next) => {
+exports.signUpCom = async(req, res) => {
     try{
-        return res.render('signup');
+        let user = req.session.user_uid;
+        return res.render('signup', {user:user});
     }catch(err){
         return res.status(500).json(err);
     }
 }
 
-exports.signIn = async(req, res, next) => {
+exports.signIn = async(req, res) => {
     const {user_uid, user_password} = req.body;
     try{
-        var signin = await bookService.signIn(user_uid, user_password);
-        if(signin.code == 0){
-            res.cookie('user_uid', signin.user_uid);
-            res.cookie('user_password', signin.user_name);
+        let signin = await userServices.signIn(user_uid, user_password);
+        if (signin[0].user_uid == user_uid && signin[0].user_password == user_password){
+            req.session.user_uid = signin[0].user_uid;
+            req.session.save(() => {
+                res.redirect('/user/main');
+            })
+        }else{
+            // 로그인 실패 시 
+            res.send('<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); document.location.href="/user/signin";</script>')
         }
-        return req.redirect('/main');
     }catch(err){
         return res.status(500).json(err);
     }
 }
 
-exports.signInCom = async(req, res, next) =>{
+exports.signInCom = async(req, res) =>{
     try{
-        return res.render('login');
+        let user = req.session.user_uid;
+        return res.render('login', {user:user});
+    }catch(err){
+        return res.status(500).json(err);
+    }
+}
+
+exports.logout = async(req, res) =>{
+    if(req.session.user){
+        console.log('로그아웃 처리');
+        req.session.destroy(
+            function(err){
+                if(err){
+                    console.log('세션 삭제시 에러');
+                    return;
+                }
+                console.log('세션 삭제 성공');
+                res.redirect('/book/main');
+            }
+        );
+    }else{
+        console.log('로그인 안 되어 있음');
+        res.redirect('/user/signin');
+    }
+}
+
+exports.mainUser = async(req, res) => {
+    let {user_name} = req.params;
+    try{
+        let user = await userServices.mainUser(user_name);
+        return res.render('usermain', {user:user});
     }catch(err){
         return res.status(500).json(err);
     }

@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const session = require('express-session');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
@@ -24,8 +25,15 @@ app.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }))
 
+app.use(session({
+  secret:"1234",
+  resave:true,
+  saveUninitialized:true
+}))
+
+
 app.use('/user', userRouter);
-app.use('/', bookRouter);
+app.use('/book', bookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
