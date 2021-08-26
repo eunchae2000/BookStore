@@ -21,20 +21,20 @@
     <div class="container">
         <br>
         <h2>로그인</h2>
-        <form action="/user/signin" method="POST">
+        <form action="/user/signin" method="POST" style="text-align: right;">
             <br>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="ID" required>
+                <input type="text" name="user_uid" class="form-control" id="floatingInput" placeholder="ID" required>
                 <label for="floatingInput">로그인</label>
               </div>
               <br>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <input type="password" name="user_password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">비밀번호</label>
             </div>
             <br>
             <br>
-            <button type="submit" class="btn btn-primary">로그인</button>
+            <button type="button" class="btn btn-dark" style="width: 200px; height: 50px;">로그인</button>
           </form>
     </div>
 

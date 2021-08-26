@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <title>cocobook!</title>
+    <title>Hello, world!</title>
 </head>
 
 <body>
@@ -26,13 +26,15 @@
 
     <div style="text-align: center;">
         <div style="float: right; padding-right: 100px;">
-            <button type="button" class="btn btn-dark" onclick="location.href='/user/signin'">로그인</button>
-            <button type="button" class="btn btn-dark" onclick="location.href='/user/signup'">회원가입</button>
+            <h5><%=user[0].user_uid%>님 환영합니다!</h5>
+            <button type="button" class="btn btn-dark" onclick="location.href='/book/main'">로그아웃</button>
             <button type="button" class="btn btn-dark" onclick="location.href='/user/mypage'">마이페이지</button>
             <button type="button" class="btn btn-dark">장바구니</button>
         </div>
     </div>
 
+    <br>
+    <br>
     <br>
     <br>
     <br>
