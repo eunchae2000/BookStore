@@ -39,64 +39,28 @@
 
     <!-- card -->
     <div class='container'>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/91065309/XL" width="100" height="350" class="card-img-top"
-                alt="달러구트 꿈 백화점">
-            <div class="card-body">
-                <h5 class="card-title">달러구트 꿈 백화점</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2020년 7월 8일</p>
-                <a href="#" class="btn btn-primary">장바구니</a>
-                <a href="#" class="btn btn-primary">구매하기</a>
+        <% for(var i = 0; i < list.length; i++) {%>
+            <div class="card" style="width: 15rem; float:left; margin-right:10px;">
+                <img src="http://image.yes24.com/goods/102789938/XL" width="100" height="350" class="card-img-top"
+                    alt="달러구트 꿈 백화점2">
+                <div class="card-body" style="width: 15rem; ">
+                    <h5 class="card-title" name="book_title"><a href="/:book_uid"><%=list[i].book_name %></a></h5>
+                    <p class="card-text" name="book_amount"><%=list[i].book_amount %>원</p>
+                    <p class="card-text" name="book_writer"><%=list[i].book_writer %>/<%=list[i].book_publishing %></p>
+                    <a href="#" class="btn btn-primary">장바구니</a>
+                    <a href="#" class="btn btn-primary">구매하기</a>
+                </div>
             </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/102789938/XL" width="100" height="350" class="card-img-top"
-                alt="달러구트 꿈 백화점2">
-            <div class="card-body" style="width: 15rem; ">
-                <h5 class="card-title">달러구트 꿈 백화점2</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2021년 7월 27일</p>
-                <a href="#" class="btn btn-primary">장바구니</a>
-                <a href="#" class="btn btn-primary">구매하기</a>
-            </div>
-        </div>
+            <tr>
+              <td><img src="/images/book/<%=list[i].book_path%>" alt="<%=i + 1%>" width="200" height="200"></td>
+              <td></td>
+              <td> / </td>
+              <td><%=list[i].book_detail %></td>
+              <td></td>
+              <td><%=list[i].book_num %>개</td>
+            </tr>
+            <% } %>
         
-    </div>
-    <div class='container'>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/99534783/XL" width="100" height="350" class="card-img-top"
-                alt="미드나잇 라이브러리">
-            <div class="card-body">
-                <h5 class="card-title">미드나잇 라이브러리</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2020년 7월 8일</p>
-                <a href="#" class="btn btn-primary">장바구니</a>
-                <a href="#" class="btn btn-primary">구매하기</a>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/102743883/XL" width="100" height="350" class="card-img-top"
-                alt="눈 떠보니 선진국">
-            <div class="card-body" style="width: 15rem; ">
-                <h5 class="card-title">눈 떠보니 선진국</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2021년 7월 27일</p>
-                <a href="#" class="btn btn-primary">장바구니</a>
-                <a href="#" class="btn btn-primary">구매하기</a>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/101908580/XL" width="100" height="350" class="card-img-top"
-                alt="완전한 행복">
-            <div class="card-body" style="width: 15rem;float: left;">
-                <h5 class="card-title">완전한 행복</h5>
-                <p class="card-text">판매가: 14, 000원</p>
-                <p class="card-text">저자: 이치조 미사키 / 출판사: 모모: 2021년 6월 28일</p>
-                <a href="#" class="btn btn-primary">장바구니</a>
-                <a href="#" class="btn btn-primary">구매하기</a>
-            </div>
-        </div>
     </div>
 
 
