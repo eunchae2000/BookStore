@@ -28,16 +28,8 @@ exports.signUpCom = async(req, res) => {
 exports.signIn = async(req, res) => {
     const {user_uid, user_password} = req.body;
     try{
-        let signin = await userServices.signIn(user_uid, user_password);
-        if (signin[0].user_uid == user_uid && signin[0].user_password == user_password){
-            req.session.user_uid = signin[0].user_uid;
-            req.session.save(() => {
-                res.redirect('/user/main');
-            })
-        }else{
-            // 로그인 실패 시 
-            res.send('<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); document.location.href="/user/signin";</script>')
-        }
+        await userServices.signIn(user_uid, user_password);
+        res.redirect('/user/main')
     }catch(err){
         return res.status(500).json(err);
     }
