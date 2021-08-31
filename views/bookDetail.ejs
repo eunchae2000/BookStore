@@ -2,56 +2,65 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+  <title>Hello, world!</title>
 </head>
 
-<body class="text-right">
-    <table class="table" style="text-align: right;">
-        <thead>
-          <tr>
-            <th scope="col">제목</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">작가</th>
-          </tr>
-          <tr>
-            <th scope="row">출판사</th>
-          </tr>
-          <tr>
-            <th scope="row">재고량</th>
-          </tr>
-          <tr>
-            <th scope="row">금액</th>
-          </tr>
-          <tr>
-            <th scope="row">상세정보</th>
-          </tr>
-        </tbody>
-      </table>
-  
-  
+<body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
+  <form action="/book/read/:book_uid" method="POST">
+    <h2><span class="badge bg-secondary" name="book_name">제목</span> <%=detail[0].book_name%></h2>
+    <br>
+    <div class="row">
+      <div class="col">
+        <h4><span class="badge bg-secondary" name="book_writer">저자</span> <%=detail[0].book_writer%></h4>
+      </div>
+      <div class="col">
+        <h4><span class="badge bg-secondary" name="book_publishing">출판사</span> <%=detail[0].book_publishing%></h4>
+      </div>
+      <div class="col">
+        <h4><span class="badge bg-secondary" name="num">재고</span> <%=detail[0].book_num%></h4>
+      </div>
+      <div class="col">
+        <h4><span class="badge bg-secondary" name="amount">금액</span> <%=detail[0].book_amount%></h4>
+      </div>
+    </div>
+    <br>
+    <div class="mb-3">
+      <h3>
+        <label for="exampleFormControlTextarea1" class="form-label" aria-placeholder="상세내용"></label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="book_detail" placeholder="상세내용"><%=detail[0].book_detail%></textarea>
+      </h3>
+      </div>
+      <br>
+        
+        
+  </form>
+  <br>
+  <button type="submit" class="btn btn-dark" onclick="location.href='/book/patch/<%= detail[0].book_uid %>'">수정</button>
+  <br>
+  <button type="button" class="btn btn-dark" value="delete" onclick="location.href='/book/delete/<%= detail[0].book_uid %>?_method=delete'">삭제</button>
+  <br>
+  <button type="menu" class="btn btn-dark" onclick="location.href='/book/list'">목록</button>
   
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      <!-- Optional JavaScript; choose one of the two! -->
+
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+      <!-- Option 2: Separate Popper and Bootstrap JS -->
+      <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->

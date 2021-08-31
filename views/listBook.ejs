@@ -14,7 +14,7 @@
   <title>Hello, world!</title>
 </head>
 
-<body class="text-center">
+<body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
   <table class="table">
     <thead>
       <tr>
@@ -33,11 +33,11 @@
           <th scope="row">
             <p class="card-text"><%=list[i].book_uid %></p>
           </th>
-          <td><a href="/:book_uid"><%=list[i].book_name %></a></td>
-          <td><%=list[i].book_publishing %>원</td>
+          <td><a href="/book/read/<%=list[i].book_uid%>"><%=list[i].book_name %></a></td>
+          <td><%=list[i].book_publishing %></td>
           <td><%=list[i].book_writer %></td>
           <td><%=list[i].book_detail %></td>
-          <td><%=list[i].book_amount %></td>
+          <td><%=list[i].book_amount %> 원</td>
           <td><%=list[i].book_num %></td>
         </tr>
         <% } %>
