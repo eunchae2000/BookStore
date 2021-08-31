@@ -28,10 +28,10 @@ exports.bookList = async(req, res) =>{
 }
 
 exports.bookInsert = async(req, res) =>{
-    const {book_uid, book_name, book_publishing, book_writer, book_amount, book_num, book_detail} = req.body;
+    let {book_name, book_publishing, book_writer, book_amount, book_num, book_detail} = req.body;
     try{
-        let insert = await bookService.bookInsert(book_uid, book_name, book_publishing, book_writer, book_amount, book_num, book_detail);
-        return res.redirect('/book/insert', {insert:insert});
+        await bookService.bookInsert(book_name, book_publishing, book_writer, book_amount, book_num, book_detail);
+        return res.redirect('/book/list');
     }catch(err){
         return res.status(500).json(err);
     }
@@ -46,12 +46,23 @@ exports.insertPage = async(req, res)=>{
 }
 
 exports.bookPatch = async(req, res) =>{
-    const {book_name, book_publishing, book_writer, book_amount, book_num, book_detail} = req.body;
+    let {book_name, book_publishing, book_writer, book_amount, book_num, book_detail} = req.body;
+    let {book_uid} = req.params;
     try{
-        let patch = await bookService.bookPatch(book_name, book_publishing, book_writer, book_amount, book_num, book_detail);
-        return res.render('bookPatch', {patch:patch})
+        let patch = await bookService.bookPatch(book_name, book_publishing, book_writer, book_amount, book_num, book_detail, book_uid);
+        return res.render('/book/patch/:book_uid', {patch:patch})
     }catch(err){
         return res.status(500).json(err);
+    }
+}
+
+exports.bookPatchPage = async(req, res) =>{
+    let {book_uid} = req.params;
+    try{
+        let patch = await bookService.bookRead(book_uid);
+        return res.render('bookPatch', {patch:patch})
+    }catch(err){
+        return red.status(500).json(err);
     }
 }
 
@@ -59,7 +70,17 @@ exports.bookDelete = async(req, res) =>{
     const{book_uid} = req.params;
     try{
         await bookService.bookDelete(book_uid);
-        return res.render('/user/main')
+        return res.render('/book/list')
+    }catch(err){
+        return res.status(500).json(err);
+    }
+}
+
+exports.bookRead = async(req, res) =>{
+    let {book_uid} = req.params;
+    try{
+        let detail = await bookService.bookRead(book_uid);
+        res.render('bookDetail', {detail:detail});
     }catch(err){
         return res.status(500).json(err);
     }

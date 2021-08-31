@@ -11,16 +11,6 @@ exports.main = async(req, res, next) =>{
     }
 }
 
-exports.bookDetail = async(req, res, next) =>{
-    try{
-        let detail = await pool.query(bookQuery.bookDetail)
-        return detail[0]
-    }catch(err){
-        console.log(err);
-        throw Error(err);
-    }
-}
-
 exports.bookList = async(req, res) =>{
     try{
         let list = await pool.query(bookQuery.bookList);
@@ -30,9 +20,9 @@ exports.bookList = async(req, res) =>{
     }
 }
 
-exports.bookInsert = async(book_uid, book_name, book_publishing, book_writer, book_amount, book_num, book_detail) =>{
+exports.bookInsert = async(book_name, book_publishing, book_writer, book_amount, book_num, book_detail) =>{
     try{
-        let insert = await pool.query(bookQuery.bookInsert, [book_uid, book_name, book_publishing, book_writer, book_amount, book_num, book_detail]);
+        let insert = await pool.query(bookQuery.bookInsert, [book_name, book_publishing, book_writer, book_amount, book_num, book_detail]);
         return insert[0]
     }catch(err){
         throw Error(err);
@@ -50,8 +40,17 @@ exports.bookPatch = async(req, res) =>{
 
 exports.bookDelete = async(req, res) =>{
     try{
-        let del = await pool.query(bookQuery.bookDelete[book_uid]);
+        let del = await pool.query(bookQuery.bookDelete, [book_uid]);
         return del[0]
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.bookRead = async(book_uid) =>{
+    try{
+        let detail = await pool.query(bookQuery.bookRead, [book_uid]);
+        return detail[0];
     }catch(err){
         throw Error(err);
     }

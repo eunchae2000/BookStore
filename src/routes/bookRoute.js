@@ -17,9 +17,14 @@ router.post('/insert', bookController.bookInsert);
 router.get('/insert', bookController.insertPage);
 
 // 책 수정
-router.patch('/patch/:book_uid', bookController.bookPatch)
+router.patch('/patch/:book_uid', bookController.bookPatch);
+
+router.get('/patch/:book_uid', bookController.bookPatchPage);
 
 // 책 삭제
 router.delete('/delete/:book_uid', bookController.bookDelete);
+
+// 상세보기
+router.get('/read/:book_uid', bookController.bookRead);
 
 module.exports = router;
