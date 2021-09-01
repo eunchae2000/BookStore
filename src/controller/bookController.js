@@ -49,8 +49,8 @@ exports.bookPatch = async(req, res) =>{
     let {book_name, book_publishing, book_writer, book_amount, book_num, book_detail} = req.body;
     let {book_uid} = req.params;
     try{
-        let patch = await bookService.bookPatch(book_name, book_publishing, book_writer, book_amount, book_num, book_detail, book_uid);
-        return res.render('/book/patch/:book_uid', {patch:patch})
+        await bookService.bookPatch(book_name, book_publishing, book_writer, book_amount, book_num, book_detail, book_uid);
+        return res.render('/book/read/:book_uid')
     }catch(err){
         return res.status(500).json(err);
     }
@@ -70,7 +70,7 @@ exports.bookDelete = async(req, res) =>{
     const{book_uid} = req.params;
     try{
         await bookService.bookDelete(book_uid);
-        return res.render('/book/list')
+        return res.redirect('/book/list')
     }catch(err){
         return res.status(500).json(err);
     }

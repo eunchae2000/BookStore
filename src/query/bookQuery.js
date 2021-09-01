@@ -1,4 +1,4 @@
-exports.main = 'select * from book_info';
+exports.main = 'select book_name, book_publishing, book_writer, book_amount from book_info';
 exports.bookRead = 'select * from book_info where book_uid=?';
 exports.bookList = 'select * from book_info';
 exports.bookInsert = 'insert into book_info(book_name, book_publishing, book_writer, book_amount, book_num, book_detail) values(?, ?, ?, ?, ?, ?)';

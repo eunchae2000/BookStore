@@ -1,7 +1,7 @@
 var pool = require('../../middleware/bookData');
 var bookQuery = require('../query/bookQuery');
 
-exports.main = async(req, res, next) =>{
+exports.main = async() =>{
     try{
         let list = await pool.query(bookQuery.main)
         return list[0]
@@ -11,7 +11,7 @@ exports.main = async(req, res, next) =>{
     }
 }
 
-exports.bookList = async(req, res) =>{
+exports.bookList = async() =>{
     try{
         let list = await pool.query(bookQuery.bookList);
         return list[0];
@@ -29,7 +29,7 @@ exports.bookInsert = async(book_name, book_publishing, book_writer, book_amount,
     }
 }
 
-exports.bookPatch = async(req, res) =>{
+exports.bookPatch = async(book_name, book_publishing, book_writer, book_amount, book_num, book_detail) =>{
     try{
         let patch = await pool.query(bookService.bookPatch[book_name, book_publishing, book_writer, book_amount, book_num, book_detail]);
         return patch[0]
@@ -38,7 +38,7 @@ exports.bookPatch = async(req, res) =>{
     }
 }
 
-exports.bookDelete = async(req, res) =>{
+exports.bookDelete = async(book_uid) =>{
     try{
         let del = await pool.query(bookQuery.bookDelete, [book_uid]);
         return del[0]
