@@ -8,21 +8,46 @@ const mypageController = require('../controller/mypageController');
 3. 마이페이지의 메인 페이지
  */
 
- // 마이페이지 - 메인
- router.get('/main', mypageController.mypage);
+
+// 마이페이지 - 메인
+router.get('/main', mypageController.mypage);
+
+// 배송지 목록
+router.get('/main', mypageController.deliveryList);
+
+// 카드 목록
+router.get('/main', mypageController.cardList);
 
 // 배송지 추가
-router.post('/ship/:deleivery_uid', mypageController.shipInsert);
+router.post('/ship/insert/:deleivery_uid', mypageController.shipInsert);
+
 // 배송지 추가 페이지
-router.get('/ship', mypageController.shipInsertPage);
+router.get('/ship/insert', mypageController.shipInsertPage);
 
 // 배송지 수정
-router.post('/update/:delivery_uid', mypageController.shipUpdate);
+router.post('/ship/update/:delivery_uid', mypageController.shipUpdate);
+
 // 배송지 수정 페이지
-router.get('/update/:delivery_uid', mypageController.shipUpdatePage);
+router.get('/ship/update/:delivery_uid', mypageController.shipUpdatePage);
 
 // 배송지 삭제
-router.delete('/delete/:book_user_user_uid')
+router.delete('/ship/delete/:book_user_user_uid', mypageController.shipDelete);
+
+// 카드 추가
+router.post('/card/insert/:card_uid', mypageController.cardInsert);
+
+// 카드 추가 페이지
+router.get('/card/insert', mypageController.cardInsertPage);
+
+// 카드 수정
+router.post('/card/update/:card_uid', mypageController.cardUpdate);
+
+//카드 수정 페이지
+router.get('/card/update/:card_uid', mypageController.cardUpdatePage);
+
+// 카드 삭제
+router.delete('/card/delete/:card_uid', mypageController.cardDelete);
+
 
 // 카드 추가
 // 카드 추가 페이지
