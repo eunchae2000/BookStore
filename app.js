@@ -10,6 +10,7 @@ var app = express();
 
 var userRouter = require('./src/routes/userRoute');
 var bookRouter = require('./src/routes/bookRoute');
+var mypageRouter = require('./src/routes/mypageRoute');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use(session({
 
 app.use('/user', userRouter);
 app.use('/book', bookRouter);
+app.use('/mypage', mypageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -13,8 +13,8 @@ exports.signUp = async(user_uid, user_password, user_name) =>{
 
 exports.signIn = async(user_uid, user_password) => {
     try{
-        let signin = await pool.query(userQuery.signIn, [user_uid, user_password]) 
-        return signin[0]
+        let user = await pool.query(userQuery.signIn, [user_uid, user_password]) 
+        return user[0]
     }catch(err){
         throw Error(err);
     }

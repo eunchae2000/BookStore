@@ -24,14 +24,26 @@
     <h1 style="text-align: center;">COCOBOOK WELCOME!</h1>
     <br>
 
-    <div style="text-align: center;">
-        <div style="float: right; padding-right: 100px;">
-            <h5><%=user.user_name%>님 환영합니다!</h5>
-            <button type="button" class="btn btn-dark" onclick="location.href='/book/main'">로그아웃</button>
-            <button type="button" class="btn btn-dark" onclick="location.href='/user/mypage'">마이페이지</button>
-            <button type="button" class="btn btn-dark">장바구니</button>
+    <% if(user != null){ %>
+        <h3>로그인에 성공하셨습니다 ~</h3>
+        <div style="text-align: center;">
+            <div style="float: right; padding-right: 100px;">
+                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
+                <button type="button" class="btn btn-dark">장바구니</button>
+            </div>
         </div>
-    </div>
+        
+        <% } else{ %>
+        <h3>로그인</h3>
+        <div style="text-align: center;">
+            <div style="float: right; padding-right: 100px;">
+                <button type="button" class="btn btn-dark" onclick="location.href='/user/signin'">로그인</button>
+                <button type="button" class="btn btn-dark" onclick="location.href='/user/signup'">회원가입</button>
+                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
+                <button type="button" class="btn btn-dark">장바구니</button>
+            </div>
+        </div>
+        <% } %>
 
     <br>
     <br>

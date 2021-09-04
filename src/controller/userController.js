@@ -4,8 +4,8 @@ exports.signUp = async(req, res) =>{
     // 회원가입에 필요한 정보를 받아오는 부분
     const {user_uid, user_password, user_name} = req.body;
     try{
-        await userServices.signUp(user_uid, user_password, user_name)
-        return res.redirect('/book/main')
+        let user = await userServices.signUp(user_uid, user_password, user_name)
+        return res.redirect('/book/main', {user:user})
     }catch(err){
         // 중복된 아이디가 있을 경우
         res.send('<script type="text/javascript">alert("이미 사용중인 아이디 입니다."); document.location.href="/user/signup";</script>')
@@ -75,7 +75,7 @@ exports.mainUser = async(req, res) => {
     let {user_name} = req.params;
     try{
         let user = await userServices.mainUser(user_name);
-        return res.render('usermain', {user:user});
+        return res.render('main', {user:user});
     }catch(err){
         return res.status(500).json(err);
     }
