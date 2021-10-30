@@ -3,83 +3,60 @@
 2. 마이페이지 버튼
 3. 장바구니 버튼
 4. 도서 사진, 제목 등 한 도서를 그룹화 시켜 클릭하면 그 도서에 대한 상세정보 -->
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <title>cocobook!</title>
+  <title>My page</title>
 </head>
 
-<body>
-    <br>
-    <br>
-    <h1 style="text-align: center;">COCOBOOK WELCOME!</h1>
-    <br>
-    <% if(user[0] != null){ %>
-        <h3>로그인에 성공하셨습니다 ~</h3>
-        <div style="text-align: center;">
-            <div style="float: right; padding-right: 100px;">
-                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
-                <button type="button" class="btn btn-dark">장바구니</button>
-            </div>
-        </div>
-        
-        <% } else{ %>
-        <h3>로그인</h3>
-        <div style="text-align: center;">
-            <div style="float: right; padding-right: 100px;">
-                <button type="button" class="btn btn-dark" onclick="location.href='/user/signin'">로그인</button>
-                <button type="button" class="btn btn-dark" onclick="location.href='/user/signup'">회원가입</button>
-                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
-                <button type="button" class="btn btn-dark">장바구니</button>
-            </div>
-        </div>
-        <% } %>
+<body class="text-center" style="margin-top: 100px; margin-left: 150px; margin-right: 150px; float: right;">
 
-    <br>
-    <br>
-    <br>
-
-    <!-- card -->
-    <div class='container'>
-        <% for(var i = 0; i < list.length; i++) {%>
-            <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-                <img src="http://image.yes24.com/goods/102789938/XL" width="100" height="350" class="card-img-top"
-                    alt="달러구트 꿈 백화점2">
-                <div class="card-body" style="width: 15rem; ">
-                    <h5 class="card-title" name="book_title"><a href="/:book_uid"><%=list[i].book_name %></a></h5>
-                    <p class="card-text" name="book_amount"><%=list[i].book_amount %>원</p>
-                    <p class="card-text" name="book_writer"><%=list[i].book_writer %>/<%=list[i].book_publishing %></p>
-                    <a href="#" class="btn btn-primary">장바구니</a>
-                    <a href="#" class="btn btn-primary">구매하기</a>
-                </div>
-            </div>
-            <tr>
-              <td><img src="/images/book/<%=list[i].book_path%>" alt="<%=i + 1%>" width="200" height="200"></td>
-              <td></td>
-            </tr>
-            <% } %>
-        
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/signin">로그인</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/signup">회원가입</a></li>
+          <% } else{ %>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">마이페이지</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">장바구니</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">로그아웃</a></li>
+          <% } %>
+        </ul>
+      </div>
     </div>
+    </ul>
+  </nav>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->

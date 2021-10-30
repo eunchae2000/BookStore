@@ -3,126 +3,108 @@
 2. 마이페이지 버튼
 3. 장바구니 버튼
 4. 도서 사진, 제목 등 한 도서를 그룹화 시켜 클릭하면 그 도서에 대한 상세정보 -->
+<!-- TODO:
+1. 검색버튼 활성화
+2. 마이페이지 버튼
+3. 장바구니 버튼
+4. 도서 사진, 제목 등 한 도서를 그룹화 시켜 클릭하면 그 도서에 대한 상세정보 -->
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+  <title>Main</title>
 </head>
 
-<body>
-    <br>
-    <br>
-    <h1 style="text-align: center;">COCOBOOK WELCOME!</h1>
-    <br>
+<body class="text-center" style="margin-left: 150px; margin-right: 150px;">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <header>
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/main">Home</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if(users.user_uid==null){ %>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/signin">로그인</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/signup">회원가입</a></li>
+              <% } else{ %>
+                <li class="nav-item"><a class="nav-link active" aria-current="page">
+                    <%= users.user_uid %>님 환영합니다
+                  </a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page"
+                    href="/mypage/main/<%= users.user_uid %>">마이페이지</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/cart/list/<%= users.user_uid %>">장바구니</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">주문 목록</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/logout">로그아웃</a></li>
+                <% } %>
+          </ul>
+        </div>
+      </div>
+      </ul>
+    </nav>
 
-    <% if(user != null){ %>
-        <h3>로그인에 성공하셨습니다 ~</h3>
-        <div style="text-align: center;">
-            <div style="float: right; padding-right: 100px;">
-                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
-                <button type="button" class="btn btn-dark">장바구니</button>
-            </div>
-        </div>
-        
-        <% } else{ %>
-        <h3>로그인</h3>
-        <div style="text-align: center;">
-            <div style="float: right; padding-right: 100px;">
-                <button type="button" class="btn btn-dark" onclick="location.href='/user/signin'">로그인</button>
-                <button type="button" class="btn btn-dark" onclick="location.href='/user/signup'">회원가입</button>
-                <button type="button" class="btn btn-dark" onclick="location.href='/mypage/main'">마이페이지</button>
-                <button type="button" class="btn btn-dark">장바구니</button>
-            </div>
-        </div>
-        <% } %>
+  </header>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  <br>
 
-    <!-- card -->
-    <div class='container'>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/91065309/XL" width="100" height="350" class="card-img-top"
-                alt="달러구트 꿈 백화점">
-            <div class="card-body">
-                <h5 class="card-title">달러구트 꿈 백화점</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2020년 7월 8일</p>
-                <a href="#" class="btn btn-dark">장바구니</a>
-                <a href="#" class="btn btn-dark">구매하기</a>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/102789938/XL" width="100" height="350" class="card-img-top"
-                alt="달러구트 꿈 백화점2">
-            <div class="card-body" style="width: 15rem; ">
-                <h5 class="card-title">달러구트 꿈 백화점2</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2021년 7월 27일</p>
-                <a href="#" class="btn btn-dark">장바구니</a>
-                <a href="#" class="btn btn-dark">구매하기</a>
-            </div>
-        </div>
-        
-    </div>
-    <div class='container'>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/99534783/XL" width="100" height="350" class="card-img-top"
-                alt="미드나잇 라이브러리">
-            <div class="card-body">
-                <h5 class="card-title">미드나잇 라이브러리</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2020년 7월 8일</p>
-                <a href="#" class="btn btn-dark">장바구니</a>
-                <a href="#" class="btn btn-dark">구매하기</a>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/102743883/XL" width="100" height="350" class="card-img-top"
-                alt="눈 떠보니 선진국">
-            <div class="card-body" style="width: 15rem; ">
-                <h5 class="card-title">눈 떠보니 선진국</h5>
-                <p class="card-text">판매가: 13, 800원</p>
-                <p class="card-text">저자: 이미예 / 출판사: 팩토리나인 / 출간일: 2021년 7월 27일</p>
-                <a href="#" class="btn btn-dark">장바구니</a>
-                <a href="#" class="btn btn-dark">구매하기</a>
-            </div>
-        </div>
-        <div class="card" style="width: 15rem; float:left; margin-right:10px;">
-            <img src="http://image.yes24.com/goods/101908580/XL" width="100" height="350" class="card-img-top"
-                alt="완전한 행복">
-            <div class="card-body" style="width: 15rem;float: left;">
-                <h5 class="card-title">완전한 행복</h5>
-                <p class="card-text">판매가: 14, 000원</p>
-                <p class="card-text">저자: 이치조 미사키 / 출판사: 모모: 2021년 6월 28일</p>
-                <a href="#" class="btn btn-dark">장바구니</a>
-                <a href="#" class="btn btn-dark">구매하기</a>
-            </div>
-        </div>
-    </div>
+  <table class="table container h-100">
+    <% for(var i=0; i < book_info.length; i++) {%>
+      <tr>
+        <td>
+          <a href="/book/detail/<%=book_info[i].book_uid%>"><img src="book/<%=book_info[i].book_path%>" .jpeg
+              alt="<%=i + 1%>" width="300" height="300"></a>
+        </td>
+        <td width="*" align="left" valign="top">
+          <li><a style="color : black" href="/book/detail/<%=book_info[i].book_uid%>">책 이름 : <%=book_info[i].book_name
+                %></a></li>
+          <li>출판사 / 작가 : <%=book_info[i].book_publishing %> / <%=book_info[i].book_writer %>
+          </li>
+          <li style="overflow: hidden; height: 50px; text-overflow:ellipsis;">세부 정보 : <%=book_info[i].book_detail %></li>
+          <% if((book_info[i].book_amount)> 1000) { %>
+            <% book_info[i].book_num=book_info[i].book_num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' ) %>
+              <% }%>
+                <li>가격 : <%=book_info[i].book_amount %>원</li>
+                <li>남은 수량 : <%=book_info[i].book_num %>개</li>
+        </td>
+      </tr>
+      <% } %>
+  </table>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+
+
+
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->

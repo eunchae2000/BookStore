@@ -18,7 +18,8 @@ router.get('/signin', userController.signInCom);
 // 로그아웃
 router.get('/logout', userController.logout);
 
-// 로그인 성공 시 메인 페이지
+// 메인페이지
 router.get('/main', userController.mainUser);
 
+// 책 메인
 module.exports = router;

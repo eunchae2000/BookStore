@@ -16,29 +16,29 @@
 <body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
   <form action="/book/insert" method="POST">
     <div class="input-group input-group-lg">
-      <span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" name="book_name"
+      <span class="input-group-text" id="inputGroup-sizing-lg" >제목</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" id="book_name" name="book_name"
         aria-describedby="inputGroup-sizing-lg" required>
     </div>
     <br>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="저자" name="book_writer" required>
+        <input type="text" class="form-control" placeholder="저자" id="book_writer" name="book_writer" required>
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="출판사" name="book_publishing" required>
+        <input type="text" class="form-control" placeholder="출판사" id="book_publishing" name="book_publishing" required>
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="재고량" name="book_num" required>
+        <input type="text" class="form-control" placeholder="재고량" id="book_num" name="book_num" required>
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="금액" name="book_amount" required>
+        <input type="text" class="form-control" placeholder="금액" id="book_amount" name="book_amount" required>
       </div>
     </div>
     <br>
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label" aria-placeholder="상세내용"></label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="book_detail" placeholder="상세내용"
+      <textarea class="form-control" id="book_detail" rows="3" name="book_detail" placeholder="상세내용"
         required></textarea>
     </div>
     <br>
