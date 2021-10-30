@@ -11,24 +11,27 @@ var app = express();
 var userRouter = require('./src/routes/userRoute');
 var bookRouter = require('./src/routes/bookRoute');
 var mypageRouter = require('./src/routes/mypageRoute');
+var cartRouter = require('./src/routes/cartRoute');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method", {
-  methods: ["POST", "GET"]
+  methods: ["POST", "GET", "DELETE"]
 }))
 
 app.use(session({
-  secret:"1234",
-  resave:true,
+  secret:'1234',
+  resave:false,
   saveUninitialized:true
 }))
 
@@ -36,6 +39,7 @@ app.use(session({
 app.use('/user', userRouter);
 app.use('/book', bookRouter);
 app.use('/mypage', mypageRouter);
+app.use('/cart', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

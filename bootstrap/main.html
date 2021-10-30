@@ -1,4 +1,4 @@
-<!-- 책 수정-->
+<!-- 책 리스트-->
 <!doctype html>
 <html lang="en">
 
@@ -11,44 +11,57 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>book list</title>
 </head>
 
-<body class="text-right">
-  <form action="/book/list">
-    <div class="input-group input-group-lg">
-      <span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" name="book_name" aria-describedby="inputGroup-sizing-lg">
+<body class="text-center" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+  <div class="container h-100">
+    <div class="user-form container">
+      <% if (userName != null) { %>
+      <h2><%=userName %> 님 안녕하세요</h2>
+      <% } %>
+  
+    </div><br>
+    <div class="d-flex justify-content-center h-100">
+  
+      <form action="/" method="post">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="bookName" id="bookName" placeholder="Search...">
+          <button type="submit" class="search_icon btn"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+  
     </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="저자" name="book_writer" aria-label="First name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="출판사" name="book_publishing" aria-label="Last name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="재고량" name="book_num" aria-label="Last name">
-      </div>
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text">금액</span>
-      <input type="text" class="form-control" name="book_amount" aria-label="Amount (to the nearest dollar)">
-      <span class="input-group-text">원</span>
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">상세 내용</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="book_detail"></textarea>
-    </div>
-    <button type="submit"> 저장 </button>
-  </form>
-
-
-
-
-
-
-
+  
+    <br>
+  
+    <table class="table container h-100">
+      <% for(var i = 0; i < bookInfo.length; i++) {%>
+      <tr>
+        <td>
+          <a href="/book/<%=bookInfo[i].BOOK_UID%>/detail"><img src="/images/book/<%=bookInfo[i].BOOK_PATH%>"
+              alt="<%=i + 1%>" width="300" height="300"></a>
+        </td>
+        <td width="*" align="left" valign="top">
+          <li><a style="color : black" href="/book/<%=bookInfo[i].BOOK_UID%>/detail">책 이름 : <%=bookInfo[i].BOOK_NAME %></a></li>
+          <li>출판사 / 작가 : <%=bookInfo[i].BOOK_PUBLISH %> / <%=bookInfo[i].BOOK_AUTHOR %></li>
+          <li>세부 정보 : <%=bookInfo[i].BOOK_DETAIL %></li>
+          <% if((bookInfo[i].BOOK_PRICE) > 1000) { %>
+          <% bookInfo[i].BOOK_PRICE = bookInfo[i].BOOK_PRICE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %>
+          <% }%>
+          <li>가격 : <%=bookInfo[i].BOOK_PRICE %>원</li>
+          <li>남은 수량 : <%=bookInfo[i].BOOK_COUNT %>개</li>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+  <br><br>
+  <div class="container h-100 user-form">
+    <% if(bookInfo.length == 0) { %>
+    <h1>책이 없습니다 ㅜㅜ</h1>
+    <% } %>
+  </div>
       <!-- Optional JavaScript; choose one of the two! -->
 
       <!-- Option 1: Bootstrap Bundle with Popper -->

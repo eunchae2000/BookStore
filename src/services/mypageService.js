@@ -1,19 +1,9 @@
 const mypageQuery = require('../query/mypageQuery');
 const pool = require('../../middleware/bookData');
 
-exports.mypage = async() =>{
+exports.shipList = async(book_user_user_uid) =>{
     try{
-        let main = await pool.query(mypageQuery.mypage)
-        return main[0]
-    }catch(err){
-        console.log(err);
-        throw Error(err)
-    }
-}
-
-exports.deliveryList = async() =>{
-    try{
-        let delivery = await pool.query(mypageQuery.deliveryList);
+        let delivery = await pool.query(mypageQuery.shipList, [book_user_user_uid]);
         return delivery[0]
     }catch(err){
         console.log(err);
@@ -21,9 +11,9 @@ exports.deliveryList = async() =>{
     }
 }
 
-exports.cardList = async() =>{
+exports.cardList = async(book_user_user_uid) =>{
     try{
-        let card = await pool.query(mypageQuery.cardList);
+        let card = await pool.query(mypageQuery.cardList, [book_user_user_uid]);
         return card[0]
     }catch(err){
         console.log(err);
@@ -31,18 +21,28 @@ exports.cardList = async() =>{
     }
 }
 
-exports.shipInsert = async(delivery_code, delivery_adress, delivery_detail)=>{
+exports.shipDetail = async(delivery_uid) =>{
     try{
-        let insert = await pool.query(mypageQuery.shipInsert, [delivery_code, delivery_adress, delivery_detail]);
+        let detail = await pool.query(mypageQuery.shipDetail, [delivery_uid]);
+        return detail[0]
+    }catch(err){
+        console.log(err);
+        throw Error(err);
+    }
+}
+
+exports.shipInsert = async(delivery_uid, delivery_code, delivery_adress, delivery_detail, book_user_user_uid)=>{
+    try{
+        let insert = await pool.query(mypageQuery.shipInsert, [delivery_uid, delivery_code, delivery_adress, delivery_detail, book_user_user_uid]);
         return insert[0]
     }catch(err){
         throw Error(err)
     }
 }
 
-exports.shipUpdate = async(delivery_code, delivery_adress, delivery_detail) =>{
+exports.shipUpdate = async(delivery_code, delivery_adress, delivery_detail, delivery_uid, book_user_user_uid) =>{
     try{
-        let update = await pool.query(mypageQuery.shipUpdate, [delivery_code, delivery_adress, delivery_detail]);
+        let update = await pool.query(mypageQuery.shipUpdate, [delivery_code, delivery_adress, delivery_detail, delivery_uid, book_user_user_uid]);
         return update[0]
     }catch(err){
         throw Error(err)
@@ -58,19 +58,29 @@ exports.shipDelete = async(delivery_uid) =>{
     }
 }
 
-exports.cardInsert = async(card_uid, card_period, card_kind)=>{
+exports.cardDetail = async(card_uid) =>{
     try{
-        let cardIns = await pool.query(mypageQuery.cardInsert, [card_uid, card_period, card_kind]);
-        return cardIns[0]
+        let detail = await pool.query(mypageQuery.cardDetail, [card_uid]);
+        return detail[0]
+    }catch(err){
+        console.log(err)
+        throw Error(err);
+    }
+}
+
+exports.cardInsert = async(card_uid, card_period, card_kind, card_code)=>{
+    try{
+        let insert = await pool.query(mypageQuery.cardInsert, [card_code, card_kind, card_period, card_uid]);
+        return insert[0]
     }catch(err){
         throw Error(err);
     }
 }
 
-exports.cardUpdate = async(card_uid, card_period, card_kind) =>{
+exports.cardUpdate = async(card_code, card_period, card_kind, card_uid) =>{
     try{
-        let cardUp = await pool.query(mypageQuery.cardUpdate, [card_uid, card_period, card_kind]);
-        return cardUp[0]
+        let update = await pool.query(mypageQuery.cardUpdate, [card_code, card_period, card_kind, card_uid]);
+        return update[0]
     }catch(err){
         throw Error(err);
     }
